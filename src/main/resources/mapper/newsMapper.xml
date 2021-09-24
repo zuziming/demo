@@ -9,7 +9,7 @@
 
     <insert id="addNews" parameterType="com.example.demo.entity.News" useGeneratedKeys="true" keyProperty="id">
         insert into news (title,time,key_word,content)
-        values (#{newsTitle},now(),#{keyWord},#{newsContent})
+        values (#{title},now(),#{keyWord},#{content})
     </insert>
 
     <delete id="delNews">
@@ -20,18 +20,16 @@
 
     <update id="updateNews" parameterType="com.example.demo.entity.News">
         update news set
-        <if test="newsTitle != null and newsTitle !=''">
-            title = #{newstTitle},
-        </if>
-        <if test="newsTime != null and newsTime !=''">
-            time = #{newsTime},
+        <if test="title != null and title !=''">
+            title = #{title},
         </if>
         <if test="keyWord !=null and keyWord !=''">
             key_word = #{keyWord},
         </if>
-        <if test="newsContent !=null and newsContent !=''">
-            content = #{newsContent}
+        <if test="content !=null and content !=''">
+            content = #{content},
         </if>
+         time = now()
         <where>
             id=#{id}
         </where>

@@ -1,9 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.News;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
+
 public interface NewsService {
      News getNewsById(Integer id);
 

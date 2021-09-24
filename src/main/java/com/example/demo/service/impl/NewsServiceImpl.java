@@ -3,11 +3,15 @@ package com.example.demo.service.impl;
 import com.example.demo.entity.News;
 import com.example.demo.mapper.NewsMapper;
 import com.example.demo.service.NewsService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
+@AllArgsConstructor
 public class NewsServiceImpl implements NewsService {
 
-    @Autowired
+
     private NewsMapper newsMapper;
 
     @Override

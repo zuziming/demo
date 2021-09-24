@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.News;
 import com.example.demo.service.NewsService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,25 +10,31 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/news")
 public class NewsController {
 
-    @Autowired
     private NewsService newsService;
-    @RequestMapping ("/getNewsById")
-    public News getNewsById(@RequestParam Integer id){
+
+    public NewsController(NewsService newsService) {
+        this.newsService = newsService;
+    }
+
+    @ResponseBody
+    @GetMapping("/{id}")
+    public News getNewsById(@PathVariable Integer id){
         return newsService.getNewsById(id);
     }
-    @RequestMapping("/addNews")
+    @PostMapping
     public Integer addNews(@RequestBody News news){
         return newsService.addNews(news);
     }
-    @RequestMapping("/delNews")
-    public Integer delNews(@RequestParam Integer id){
+    @DeleteMapping("/{id}")
+    public Integer delNews(@PathVariable Integer id){
         return newsService.delNews(id);
     }
-    @RequestMapping("/updateNews")
-    public Integer updateNews(@RequestBody News news){
+    @PutMapping("/{id}")
+    public Integer updateNews(@RequestBody News news,@PathVariable Integer id){
+        news.setId(id);
         return newsService.updateNews(news);
     }
-    @RequestMapping("/query")
+    @RequestMapping
     public News queryNews(@RequestBody News news){
         return newsService.queryNews(news);
     }

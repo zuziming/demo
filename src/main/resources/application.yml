@@ -10,3 +10,13 @@ spring:
     username: root
     #数据密码
     password: root
+    #mybatis的相关配置
+mybatis:
+
+  configuration:
+    #开启驼峰命名法
+    map-underscore-to-camel-case: true
+    #mapper的xml 文件中使用别名时候的包名
+  type-aliases-package: com.example.demo.entity
+  #xml 文件 所在位置
+  mapper-locations: classpath:mapper/*.xml
