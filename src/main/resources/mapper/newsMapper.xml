@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.NewsMapper">
+    <select id="getNewsById" parameterType="java.lang.Integer" resultType="com.example.demo.entity.News">
+        select * from news where id=#{id}
+    </select>
+
+    <insert id="addNews" parameterType="com.example.demo.entity.News" useGeneratedKeys="true" keyProperty="id">
+        insert into news (title,time,key_word,content)
+        values (#{newsTitle},now(),#{keyWord},#{newsContent})
+    </insert>
+
+    <delete id="delNews">
+        delete
+        from news
+        where id = #{id}
+    </delete>
+
+    <update id="updateNews" parameterType="com.example.demo.entity.News">
+        update news set
+        <if test="newsTitle != null and newsTitle !=''">
+            title = #{newstTitle},
+        </if>
+        <if test="newsTime != null and newsTime !=''">
+            time = #{newsTime},
+        </if>
+        <if test="keyWord !=null and keyWord !=''">
+            key_word = #{keyWord},
+        </if>
+        <if test="newsContent !=null and newsContent !=''">
+            content = #{newsContent}
+        </if>
+        <where>
+            id=#{id}
+        </where>
+    </update>
+</mapper>
