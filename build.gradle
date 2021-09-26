@@ -20,6 +20,7 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    implementation('com.github.pagehelper:pagehelper-spring-boot-starter:1.2.5')
 }
 
 test {

@@ -34,4 +34,19 @@
             id=#{id}
         </where>
     </update>
+
+
+
+    <select id="selectAll" resultType="com.example.demo.entity.News">
+        select * from news
+    </select>
+
+
+
+    <select id="selectPage"  resultType="com.example.demo.entity.News">
+        select
+        *
+        from news
+    </select>
+
 </mapper>

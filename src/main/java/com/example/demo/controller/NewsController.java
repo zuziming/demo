@@ -1,9 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.News;
+import com.example.demo.util.PageRequest;
 import com.example.demo.service.NewsService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -34,8 +33,18 @@ public class NewsController {
         news.setId(id);
         return newsService.updateNews(news);
     }
-    @RequestMapping
-    public News queryNews(@RequestBody News news){
-        return newsService.queryNews(news);
+
+    @GetMapping("/findAll")
+    public Object findAll() {
+        return newsService.findAll();
     }
+
+    @PostMapping("/findPage")
+    public Object findPage(@RequestBody PageRequest pageQuery) {
+        return newsService.findPage(pageQuery);
+    }
+    //    @GetMapping
+//    public News queryNews(News news, boolean type){
+//        return newsService.queryNews(news);
+//    }
 }

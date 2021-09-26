@@ -1,11 +1,17 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.News;
+import com.example.demo.util.PageRequest;
 import com.example.demo.mapper.NewsMapper;
 import com.example.demo.service.NewsService;
+import com.example.demo.util.PageResult;
+import com.example.demo.util.PageUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -37,6 +43,29 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public News queryNews(News news) {
         return null;
+    }
+
+    @Override
+    public List<News> findAll() {
+        return newsMapper.selectAll();
+    }
+
+    @Override
+    public PageResult findPage(PageRequest pageRequest) {
+        return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
+    }
+
+    /**
+     * 调用分页插件完成分页
+     * @param
+     * @return
+     */
+    private PageInfo<News> getPageInfo(PageRequest pageRequest) {
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(pageNum, pageSize);
+        List<News> sysMenus = newsMapper.selectPage();
+        return new PageInfo<News>(sysMenus);
     }
 
 
