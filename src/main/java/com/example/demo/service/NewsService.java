@@ -34,4 +34,10 @@ public interface NewsService {
      * @return PageResult 自定义，统一分页查询结果
      */
     PageResult findPage(PageRequest pageRequest);
+
+    List<News> sqlPage(News page);
+
+    List<News> findConditions(News title);
+
+    List<News> sqlPage(Integer pageNo, Integer pageSize);
 }

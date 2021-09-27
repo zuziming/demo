@@ -5,6 +5,8 @@ import com.example.demo.util.PageRequest;
 import com.example.demo.service.NewsService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/news")
 public class NewsController {
@@ -37,6 +39,17 @@ public class NewsController {
     @GetMapping("/findAll")
     public Object findAll() {
         return newsService.findAll();
+    }
+
+
+    @PostMapping("sqlFindAll")
+    public List<News> sqlPage(@RequestBody News page){
+    return newsService.sqlPage(page.pageNo,page.pageSize);
+    }
+
+    @GetMapping("findConditions")
+    public List<News> findConditions(@RequestBody News title){
+        return newsService.findConditions(title);
     }
 
     @PostMapping("/findPage")

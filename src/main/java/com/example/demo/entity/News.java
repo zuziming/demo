@@ -11,4 +11,8 @@ public class News {
     private String content;
     private Date time;
     private String keyWord;
+    public Integer pageNo;
+    public Integer pageSize;
+    public Integer pageTotal;
+
 }

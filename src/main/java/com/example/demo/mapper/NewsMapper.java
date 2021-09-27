@@ -22,4 +22,8 @@ public interface NewsMapper {
      * @return
      */
     List<News> selectPage();
+
+    List<News> sqlPage(Integer pageNo, Integer pageSize);
+
+    List<News> findConditions(News title);
 }

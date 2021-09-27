@@ -4,12 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.NewsMapper">
     <select id="getNewsById" parameterType="java.lang.Integer" resultType="com.example.demo.entity.News">
-        select * from news where id=#{id}
+        select *
+        from news
+        where id = #{id}
     </select>
 
     <insert id="addNews" parameterType="com.example.demo.entity.News" useGeneratedKeys="true" keyProperty="id">
-        insert into news (title,time,key_word,content)
-        values (#{title},now(),#{keyWord},#{content})
+        insert into news (title, time, key_word, content)
+        values (#{title}, now(), #{keyWord}, #{content})
     </insert>
 
     <delete id="delNews">
@@ -29,24 +31,32 @@
         <if test="content !=null and content !=''">
             content = #{content},
         </if>
-         time = now()
+        time = now()
         <where>
             id=#{id}
         </where>
     </update>
 
 
-
     <select id="selectAll" resultType="com.example.demo.entity.News">
-        select * from news
-    </select>
-
-
-
-    <select id="selectPage"  resultType="com.example.demo.entity.News">
-        select
-        *
+        select *
         from news
     </select>
 
+
+    <select id="selectPage" resultType="com.example.demo.entity.News">
+        select *
+        from news
+    </select>
+
+    <select id="sqlPage" resultType="com.example.demo.entity.News">
+        select *
+        from news
+        <bind name="page" value="(pageNo - 1) * pageSize"/>
+        limit #{page},#{pageSize}
+    </select>
+
+    <select id="findConditions" resultType="com.example.demo.entity.News">
+        select * from news where title like concat('%',#{title},'%')
+    </select>
 </mapper>

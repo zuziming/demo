@@ -55,6 +55,21 @@ public class NewsServiceImpl implements NewsService {
         return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
     }
 
+    @Override
+    public List<News> sqlPage(News page) {
+        return newsMapper.sqlPage(page.pageNo,page.pageSize);
+    }
+
+    @Override
+    public List<News> findConditions(News title) {
+        return newsMapper.findConditions(title);
+    }
+
+    @Override
+    public List<News> sqlPage(Integer pageNo, Integer pageSize) {
+        return newsMapper.sqlPage(pageNo,pageSize);
+    }
+
     /**
      * 调用分页插件完成分页
      * @param
